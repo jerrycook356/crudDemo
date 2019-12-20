@@ -1,9 +1,10 @@
-package com.luv2code.springboot.cruddemo.service;
+package com.luv2code.springboot.cruddemo.EmployeeService;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.luv2code.springboot.cruddemo.dao.EmployeeDAO;
 import com.luv2code.springboot.cruddemo.entity.Employee;
@@ -20,7 +21,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	@Transactional
 	public List<Employee> findAll() {
-		return employeeDAO.findAll();
+		List<Employee> employees = employeeDAO.findAll();
+		return employees;
 	}
 
 	@Override
@@ -33,14 +35,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	@Transactional
 	public void save(Employee employee) {
-		
 
+		employeeDAO.save(employee);
 	}
 
 	@Override
+	@Transactional
 	public void deleteById(int employeeId) {
-		// TODO Auto-generated method stub
-
+		employeeDAO.deleteById(employeeId);
 	}
 
 }
